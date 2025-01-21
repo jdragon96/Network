@@ -1,0 +1,196 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|c:\\users\\wodyd\\desktop\\repository\\myproject\\networkcs\\networkcs\\network\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|solutionrelative:networkcs\\network\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|c:\\users\\wodyd\\desktop\\repository\\myproject\\networkcs\\networkcs\\view\\tcpchatting\\tcpchattingvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|solutionrelative:networkcs\\view\\tcpchatting\\tcpchattingvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|c:\\users\\wodyd\\desktop\\repository\\myproject\\networkcs\\networkcs\\network\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|solutionrelative:networkcs\\network\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|c:\\users\\wodyd\\desktop\\repository\\myproject\\networkcs\\networkcs\\view\\tcpchatting\\tcpchattingview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|solutionrelative:networkcs\\view\\tcpchatting\\tcpchattingview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|c:\\users\\wodyd\\desktop\\repository\\myproject\\networkcs\\networkcs\\network\\packet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|solutionrelative:networkcs\\network\\packet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|c:\\users\\wodyd\\desktop\\repository\\myproject\\networkcs\\networkcs\\base\\vmbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|solutionrelative:networkcs\\base\\vmbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\wodyd\\AppData\\Local\\Temp\\.vsdbgsrc\\9e7daa3b2642ed691e476a6b4c3364b61e3da611ba56eef5aed997de560ebf63\\Application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\wodyd\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|c:\\users\\wodyd\\desktop\\repository\\myproject\\networkcs\\networkcs\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|solutionrelative:networkcs\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|c:\\users\\wodyd\\desktop\\repository\\myproject\\networkcs\\networkcs\\view\\tcpchatting\\tcpchattingview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFE4DC9B-80B6-404B-AA2E-A034B86EFF02}|NetworkCS\\NetworkCS.csproj|solutionrelative:networkcs\\view\\tcpchatting\\tcpchattingview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 343,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TCPChattingView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\View\\TCPChatting\\TCPChattingView.xaml.cs",
+              "RelativeDocumentMoniker": "NetworkCS\\View\\TCPChatting\\TCPChattingView.xaml.cs",
+              "ToolTip": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\View\\TCPChatting\\TCPChattingView.xaml.cs",
+              "RelativeToolTip": "NetworkCS\\View\\TCPChatting\\TCPChattingView.xaml.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAWwB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T12:04:35.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VMBase.cs",
+              "DocumentMoniker": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\Base\\VMBase.cs",
+              "RelativeDocumentMoniker": "NetworkCS\\Base\\VMBase.cs",
+              "ToolTip": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\Base\\VMBase.cs",
+              "RelativeToolTip": "NetworkCS\\Base\\VMBase.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAqwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T11:29:39.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TCPChattingView.xaml",
+              "DocumentMoniker": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\View\\TCPChatting\\TCPChattingView.xaml",
+              "RelativeDocumentMoniker": "NetworkCS\\View\\TCPChatting\\TCPChattingView.xaml",
+              "ToolTip": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\View\\TCPChatting\\TCPChattingView.xaml",
+              "RelativeToolTip": "NetworkCS\\View\\TCPChatting\\TCPChattingView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-20T08:43:22.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TCPChattingVM.cs",
+              "DocumentMoniker": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\View\\TCPChatting\\TCPChattingVM.cs",
+              "RelativeDocumentMoniker": "NetworkCS\\View\\TCPChatting\\TCPChattingVM.cs",
+              "ToolTip": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\View\\TCPChatting\\TCPChattingVM.cs",
+              "RelativeToolTip": "NetworkCS\\View\\TCPChatting\\TCPChattingVM.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAMwFkAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T08:42:39.416Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 343,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{5d51d786-731c-4256-bf95-6a6dd495c7d7}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Packet.cs",
+              "DocumentMoniker": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\Network\\Packet.cs",
+              "RelativeDocumentMoniker": "NetworkCS\\Network\\Packet.cs",
+              "ToolTip": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\Network\\Packet.cs",
+              "RelativeToolTip": "NetworkCS\\Network\\Packet.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T13:04:26.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Client.cs",
+              "DocumentMoniker": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\Network\\Client.cs",
+              "RelativeDocumentMoniker": "NetworkCS\\Network\\Client.cs",
+              "ToolTip": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\Network\\Client.cs",
+              "RelativeToolTip": "NetworkCS\\Network\\Client.cs",
+              "ViewState": "AgIAAOgAAAAAAAAAAAAiwFMAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T13:03:56.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Server.cs",
+              "DocumentMoniker": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\Network\\Server.cs",
+              "RelativeDocumentMoniker": "NetworkCS\\Network\\Server.cs",
+              "ToolTip": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\Network\\Server.cs",
+              "RelativeToolTip": "NetworkCS\\Network\\Server.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAmwD0AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T13:03:49.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ResourcePart.cs",
+              "DocumentMoniker": "C:\\Users\\wodyd\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs",
+              "ToolTip": "C:\\Users\\wodyd\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs [\uC77D\uAE30 \uC804\uC6A9]",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs [\uC77D\uAE30 \uC804\uC6A9]",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAEAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T12:21:50.639Z",
+              "EditorCaption": " [\uC77D\uAE30 \uC804\uC6A9]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\App.xaml",
+              "RelativeDocumentMoniker": "NetworkCS\\App.xaml",
+              "ToolTip": "C:\\Users\\wodyd\\Desktop\\Repository\\myproject\\NetworkCS\\NetworkCS\\App.xaml",
+              "RelativeToolTip": "NetworkCS\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-20T12:21:27.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Application.cs",
+              "DocumentMoniker": "C:\\Users\\wodyd\\AppData\\Local\\Temp\\.vsdbgsrc\\9e7daa3b2642ed691e476a6b4c3364b61e3da611ba56eef5aed997de560ebf63\\Application.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9e7daa3b2642ed691e476a6b4c3364b61e3da611ba56eef5aed997de560ebf63\\Application.cs",
+              "ToolTip": "C:\\Users\\wodyd\\AppData\\Local\\Temp\\.vsdbgsrc\\9e7daa3b2642ed691e476a6b4c3364b61e3da611ba56eef5aed997de560ebf63\\Application.cs [\uC77D\uAE30 \uC804\uC6A9]",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\9e7daa3b2642ed691e476a6b4c3364b61e3da611ba56eef5aed997de560ebf63\\Application.cs [\uC77D\uAE30 \uC804\uC6A9]",
+              "ViewState": "AgIAAEAEAAAAAAAAAAArwFEEAAACAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T12:21:56.187Z",
+              "EditorCaption": " [\uC77D\uAE30 \uC804\uC6A9]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

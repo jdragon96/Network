@@ -1,0 +1,32 @@
+﻿<Window x:Class="NetworkCS.View.TCPChattingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NetworkCS.View"
+        mc:Ignorable="d"
+        Title="TCPChattingView" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Height="30">PORT</TextBlock>
+                <TextBox Height="30" Text="{Binding Port}"/>
+                <TextBlock Height="30">IP Address</TextBlock>
+                <TextBox Height="30" Text="{Binding IP}"/>
+                <Button Command="{Binding RunCommand}">
+                    RUN
+                </Button>
+                <Button Command="{Binding StopCommand}">
+                    STOP
+                </Button>
+                <TextBlock Height="30" Text="상태"/>
+                <TextBox Height="30" Text="{Binding Status}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
