@@ -2,6 +2,7 @@
 using NetworkCS.Network;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,13 @@ using System.Windows.Input;
 
 namespace NetworkCS.View
 {
-    public class TCPChattingVM : VMBase
+    public class TCPServerVM : VMBase
     {
-        public TCPChattingVM()
+        public TCPServerVM()
         {
             InitCommand();
+            Outputs = new ObservableCollection<string>();
+            ClientHash = new Dictionary<string, Client>();
         }
 
         /** Property Start **/
@@ -28,7 +31,7 @@ namespace NetworkCS.View
             }
         }
 
-        private string _Port { get; set; }
+        private string _Port { get; set; } = "8000";
         public string Port
         {
             get { return _Port; }
@@ -39,7 +42,7 @@ namespace NetworkCS.View
             }
         }
 
-        private string _IP { get; set; }
+        private string _IP { get; set; } = "127.0.0.1";
         public string IP
         {
             get { return _IP; }
@@ -50,21 +53,17 @@ namespace NetworkCS.View
             }
         }
 
+        public ObservableCollection<string> Outputs { get; set; }
+        public Dictionary<string, Client> ClientHash { get; set; } 
+
         private Server server { get; set; }
-        private Task _updateTask;
         private Task _listenTask;
         private bool _isRunning = true;
 
         /** Property end **/
 
         /** Functions end **/
-        private void Update()
-        {
-            while (_isRunning)
-            {
-                Thread.Sleep(5);
-            }
-        }
+
         /** Functions end **/
 
         //////////////////////////////// Command Start
@@ -86,14 +85,33 @@ namespace NetworkCS.View
             {
                 server = new Server(System.Net.IPAddress.Any, socketPort);
                 server.Open();
+                _listenTask = Task.Run(() => server.Start());
             }
-            //_listenTask = Task.Run(() => server.Start());
-            //_updateTask = Task.Run(() => Update());
+            server.OnReceivePacket += Server_OnReceivePacket;
+            server.OnConnectClient += Server_OnConnectClient;
+        }
+
+        private void Server_OnConnectClient(Client client)
+        {
+            ClientHash[client.ClientId.ToString()] = client;
+        }
+
+        private void Server_OnReceivePacket(SendPacket packet)
+        {
+            if(packet.Type == MessageType.MESSAGE)
+            {
+                App.Current.Dispatcher.Invoke(delegate
+                {
+                    Outputs.Add(packet.Message);
+                });
+            }
+            server.Broadcast(packet, ClientHash[packet.GuidId]);
         }
 
         private async Task Stop()
         {
             Status = "연결 종료";
+            server.Close();
         }
         //////////////////////////////// Command End
     }

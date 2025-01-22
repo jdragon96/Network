@@ -2,17 +2,16 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <ApplicationDefinition Update="App.xaml">
+    <Page Update="App.xaml">
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="View\TCPChatting\TCPChattingView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="View\TCPChatting\TCPChattingView.xaml">
+    </Page>
+    <Page Update="View\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\TCPClient\TCPClientView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\TCPServer\TCPServerView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

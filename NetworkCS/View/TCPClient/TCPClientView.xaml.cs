@@ -10,21 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace NetworkCS.View
 {
     /// <summary>
-    /// TCPChattingView.xaml에 대한 상호 작용 논리
+    /// TCPClientView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class TCPChattingView : Window
+    public partial class TCPClientView : UserControl
     {
-        private TCPChattingVM viewmodel;
-
-        public TCPChattingView()
+        TCPClientVM vm;
+        public TCPClientView()
         {
             InitializeComponent();
-            this.DataContext = viewmodel = new TCPChattingVM();
+            this.DataContext = vm  = new TCPClientVM();
         }
     }
 }

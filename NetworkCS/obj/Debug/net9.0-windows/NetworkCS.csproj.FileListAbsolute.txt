@@ -1,4 +1,3 @@
-C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\View\TCPChatting\TCPChattingView.g.cs
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\App.g.cs
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\NetworkCS_MarkupCompile.cache
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\NetworkCS_MarkupCompile.lref
@@ -7,7 +6,6 @@ C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\bin\Debug\net9.0
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\bin\Debug\net9.0-windows\NetworkCS.runtimeconfig.json
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\bin\Debug\net9.0-windows\NetworkCS.dll
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\bin\Debug\net9.0-windows\NetworkCS.pdb
-C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\View\TCPChatting\TCPChattingView.baml
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\NetworkCS.g.resources
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\NetworkCS.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\NetworkCS.AssemblyInfoInputs.cache
@@ -18,3 +16,10 @@ C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\NetworkCS.pdb
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\NetworkCS.genruntimeconfig.cache
 C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\ref\NetworkCS.dll
+C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\View\MainWindowView.g.cs
+C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\View\TCPClient\TCPClientView.g.cs
+C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\View\TCPServer\TCPServerView.g.cs
+C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\View\MainWindowView.baml
+C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\View\TCPClient\TCPClientView.baml
+C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\View\TCPServer\TCPServerView.baml
+C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\obj\Debug\net9.0-windows\NetworkCS.sourcelink.json

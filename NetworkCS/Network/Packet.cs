@@ -6,30 +6,17 @@ using System.Threading.Tasks;
 
 namespace NetworkCS.Network
 {
-    [Serializable]
-    public class PersonalPacket
+    public enum MessageType
     {
-        public string GuidId { get; set; }
-        public object Package { get; set; }
+        OPEN, CLOSE, MESSAGE, HEARTBEAT
     }
 
     [Serializable]
-    public class PingPacket
+    public class SendPacket
     {
-        public string GuidId { get; set; }
+        public string GuidId { get; set; } = "";
+        public MessageType Type { get; set; } = MessageType.MESSAGE;
+        public string Message { set; get; } = "";
     }
 
-    public class PacketEvents : EventArgs
-    {
-        public Client Sender;
-        public Client Receiver;
-        public object Packet;
-    }
-
-    public class PersonalPacketEvents : EventArgs
-    {
-        public Client Sender;
-        public Client Receiver;
-        public PersonalPacket Packet;
-    }
 }

@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace NetworkCS.Network
 {
-    public delegate void PacketEventHandler(object sender, PacketEvents e);
-    public delegate void PersonalPacketEventHandler(object sender, PersonalPacketEvents e);
+    public delegate void PacketEventHandler(SendPacket packet);
+    public delegate void ConnectEventHandler(Client client);
 
     public class Server
     {
@@ -27,26 +29,14 @@ namespace NetworkCS.Network
 
         private Task _receivingTask;
 
-        public event PacketEventHandler OnConnectionAccepted;
-        public event PacketEventHandler OnConnectionRemoved;
-        public event PacketEventHandler OnPacketReceived;
-        public event PacketEventHandler OnPacketSent;
-
-        public event PersonalPacketEventHandler OnPersonalPacketSent;
-        public event PersonalPacketEventHandler OnPersonalPacketReceived;
+        public event PacketEventHandler OnReceivePacket;
+        public event ConnectEventHandler OnConnectClient;
 
         public Server(IPAddress address, int port)
         {
             Address = address;
             Port = port;
-
             EndPoint = new IPEndPoint(address, port);
-
-            /****
-             * 1. 소캣 열기
-             * - SocketType.Stream : 양방향 바이트스트림을 제공하는 소캣
-             * - ProtocolType.Tcp : 프로토콜 타입 설정
-             */
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             Socket.ReceiveTimeout = 5000;
             Connections = new List<Client>();
@@ -63,9 +53,8 @@ namespace NetworkCS.Network
         {
             _receivingTask = Task.Run(() => MonitorStreams());
             IsRunning = true;
-            await Listen();
+            await MonitorNewConnect();
             await _receivingTask;
-            Socket.Close();
             return true;
         }
 
@@ -73,10 +62,32 @@ namespace NetworkCS.Network
         {
             IsRunning = false;
             Connections.Clear();
+            if (Socket != null)
+            {
+                Socket.Close();
+            }
             return true;
         }
 
-        public async Task<bool> Listen()
+        public async Task Broadcast<T>(T packet)
+        {
+            foreach (var client in Connections)
+            {
+                NetworkCore.SendMessage(Socket, packet);
+            }
+        }
+
+        public async Task Broadcast<T>(T packet, Client except)
+        {
+            foreach (var client in Connections)
+            {
+                if (except == client)
+                    continue;
+                NetworkCore.SendMessage(Socket, packet);
+            }
+        }
+
+        public async Task<bool> MonitorNewConnect()
         {
             while (IsRunning)
             {
@@ -85,12 +96,13 @@ namespace NetworkCS.Network
                     var newConnection = Socket.Accept();
                     if (newConnection != null)
                     {
-                        var client = new Client();
-                        var newGuid = await client.CreateGuid(newConnection);
-                        await client.SendMessage(newGuid);
+                        var client = new Client(newConnection);
                         Connections.Add(client);
-                        var e = BuildEvent(client, null, String.Empty);
-                        OnConnectionAccepted?.Invoke(this, e);
+                        SendPacket packet = new SendPacket();
+                        packet.Type = MessageType.OPEN;
+                        packet.GuidId = client.ClientId.ToString();
+                        await client.SendMessage(packet);
+                        OnConnectClient.Invoke(client);
                     }
                 }
             }
@@ -106,97 +118,23 @@ namespace NetworkCS.Network
                     // 1. 연결 끊어지면 커넥션 제거
                     if (!client.IsSocketConnected())
                     {
-                        var e5 = BuildEvent(client, null, String.Empty);
                         Connections.Remove(client);
-                        OnConnectionRemoved?.Invoke(this, e5);
+                        client.Disconnect();
                         continue;
                     }
-
-                    if (client.Socket.Available != 0)
-                    {
-                        var readObject = ReadObject(client.Socket);
-                        var e1 = BuildEvent(client, null, readObject);
-                        OnPacketReceived?.Invoke(this, e1);
-
-                        if (readObject is PingPacket ping)
-                        {
-                            client.SendObject(ping).Wait();
-                            continue;
-                        }
-
-                        if (readObject is PersonalPacket pp)
-                        {
-                            var destination = Connections.FirstOrDefault(c => c.ClientId.ToString() == pp.GuidId);
-                            var e4 = BuildEvent(client, destination, pp);
-                            OnPersonalPacketReceived?.Invoke(this, e4);
-
-                            if (destination != null)
-                            {
-                                destination.SendObject(pp).Wait();
-                                var e2 = BuildEvent(client, destination, pp);
-                                OnPersonalPacketSent?.Invoke(this, e2);
-                            }
-                        }
-                        else
-                        {
-                            foreach (var c in Connections.ToList())
-                            {
-                                c.SendObject(readObject).Wait();
-                                var e3 = BuildEvent(client, c, readObject);
-                                OnPacketSent?.Invoke(this, e3);
-                            }
-                        }
-                    }
+                    var packet = ReacPacket(client.Socket);
+                    if (packet == null)
+                        continue;
+                    OnReceivePacket.Invoke(packet);
                 }
             }
         }
 
-        public void SendObjectToClients(object package)
+        private SendPacket? ReacPacket(Socket clientSocket)
         {
-            foreach (var c in Connections.ToList())
-            {
-                c.SendObject(package).Wait();
-                var e3 = BuildEvent(c, c, package);
-                OnPacketSent?.Invoke(this, e3);
-            }
-        }
-
-        private object ReadObject(Socket clientSocket)
-        {
-            byte[] data = new byte[clientSocket.ReceiveBufferSize];
-
-            using (Stream s = new NetworkStream(clientSocket))
-            {
-                s.Read(data, 0, data.Length);
-                var memory = new MemoryStream(data);
-                memory.Position = 0;
-
-                //var formatter = new BinaryFormatter();
-                //var obj = formatter.Deserialize(memory);
-
-                //return obj;
+            if (clientSocket.Available == 0)
                 return null;
-            }
-        }
-
-        private PacketEvents BuildEvent(Client sender, Client receiver, object package)
-        {
-            return new PacketEvents
-            {
-                Sender = sender,
-                Receiver = receiver,
-                Packet = package
-            };
-        }
-
-        private PersonalPacketEvents BuildEvent(Client sender, Client receiver, PersonalPacket package)
-        {
-            return new PersonalPacketEvents
-            {
-                Sender = sender,
-                Receiver = receiver,
-                Packet = package
-            };
+            return NetworkCore.ReadMessage<SendPacket>(clientSocket);
         }
     }
 }

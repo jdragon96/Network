@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Policy;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -16,13 +17,16 @@ namespace NetworkCS.Network
 {
     public class Client
     {
+        public delegate void ClientListenEventHandler(SendPacket packet);
+
         public Guid ClientId { get; private set; }
         public Socket Socket { get; private set; }
         public IPEndPoint EndPoint { get; private set; }
         public IPAddress Address { get; private set; }
-        public bool IsConnected { get; private set; }
+        public bool IsRunning { get; private set; }
 
-        public bool IsGuidAssigned { get; set; }
+        public event ClientListenEventHandler OnReceivePacket;
+        private Task _monitoring;
 
         public int ReceiveBufferSize
         {
@@ -40,181 +44,60 @@ namespace NetworkCS.Network
         {
             IPAddress ipAddress;
             var validIp = IPAddress.TryParse(address, out ipAddress);
-
             if (!validIp)
                 ipAddress = Dns.GetHostAddresses(address)[0];
-
             Address = ipAddress;
             EndPoint = new IPEndPoint(ipAddress, port);
-            Socket = new Socket(AddressFamily.InterNetwork,
-                              SocketType.Stream, ProtocolType.Tcp);
-
+            Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             ReceiveBufferSize = 8000;
             SendBufferSize = 8000;
+            IsRunning = true;
         }
 
-        public Client()
-        {
-
-        }
-
-        public async Task<bool> Connect()
-        {
-            var result = await Task.Run(() => TryConnect());
-            string guid = string.Empty;
-
-            try
-            {
-                if (result)
-                {
-                    guid = RecieveGuid();
-                    ClientId = Guid.Parse(guid);
-                    IsGuidAssigned = true;
-                    return true;
-                }
-            }
-            catch (SocketException e)
-            {
-                Console.WriteLine("Connect " + e.Message);
-            }
-
-            return false;
-        }
-
-        public async Task<string> CreateGuid(Socket socket)
-        {
-            return await Task.Run(() => TryCreateGuid(socket));
-        }
-
-        public async Task<bool> SendMessage(string message)
-        {
-            return await Task.Run(() => TrySendMessage(message));
-        }
-
-        public async Task<bool> SendObject(object obj)
-        {
-            return await Task.Run(() => TrySendObject(obj));
-        }
-
-        public async Task<object> RecieveObject()
-        {
-            return await Task.Run(() => TryRecieveObject());
-        }
-
-        private object TryRecieveObject()
-        {
-            if (Socket.Available == 0)
-                return null;
-
-            byte[] data = new byte[Socket.ReceiveBufferSize];
-
-            try
-            {
-                using (Stream s = new NetworkStream(Socket))
-                {
-                    s.Read(data, 0, data.Length);
-                    var memory = new MemoryStream(data);
-                    memory.Position = 0;
-
-                    //var formatter = new BinaryFormatter();
-                    //var obj = formatter.Deserialize(memory);
-
-                    //return obj;
-                    return JsonSerializer.Deserialize<PersonalPacket>(memory);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("TryRecieveObject " + e.Message);
-                return null;
-            }
-        }
-
-        private bool TrySendObject(object obj)
-        {
-            try
-            {
-                using (Stream s = new NetworkStream(Socket))
-                {
-                    //var memory = new MemoryStream();
-                    //var formatter = new BinaryFormatter();
-                    //formatter.Serialize(memory, obj);
-                    //var newObj = memory.ToArray();
-
-                    //memory.Position = 0;
-                    //s.Write(newObj, 0, newObj.Length);
-
-                    return true;
-                }
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("TrySendObject " + e.Message);
-                return false;
-            }
-        }
-
-        public bool TrySendMessage(string message)
-        {
-            try
-            {
-                using (Stream s = new NetworkStream(Socket))
-                {
-                    StreamWriter writer = new StreamWriter(s);
-                    writer.AutoFlush = true;
-
-                    writer.WriteLine(message);
-                    return true;
-                }
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("TrySendMessage " + e.Message);
-                return false;
-            }
-        }
-
-        private bool TryConnect()
-        {
-            try
-            {
-                Socket.Connect(EndPoint);
-                return true;
-            }
-            catch
-            {
-                Console.WriteLine("Connection failed.");
-                return false;
-            }
-        }
-
-        public string RecieveGuid()
-        {
-            try
-            {
-                using (Stream s = new NetworkStream(Socket))
-                {
-                    s.ReadTimeout = 5000;
-                    var reader = new StreamReader(s);
-
-                    return reader.ReadLine();
-                }
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("RecieveGuid " + e.Message);
-                return null;
-            }
-        }
-
-        private string TryCreateGuid(Socket socket)
+        public Client(Socket socket)
         {
             Socket = socket;
             var endPoint = ((IPEndPoint)Socket.LocalEndPoint);
             EndPoint = endPoint;
-
             ClientId = Guid.NewGuid();
-            return ClientId.ToString();
+            ReceiveBufferSize = 8000;
+            SendBufferSize = 8000;
+            IsRunning = true;
+        }
+
+        public Client(Socket socket, string guid)
+        {
+            Socket = socket;
+            IsRunning = true;
+            ClientId = Guid.Parse(guid);
+            _monitoring = Task.Run(() => MonitorStreams());
+        }
+
+        private async Task MonitorStreams()
+        {
+            while (IsRunning)
+            {
+                Thread.Sleep(10);
+                var packet = await ReadMessage();
+                if (packet != null)
+                {
+                    OnReceivePacket.Invoke(packet);
+                }
+            }
+        }
+
+        public async Task<bool> SendMessage<T>(T packet)
+        {
+            return NetworkCore.SendMessage(Socket, packet);
+        }
+
+        public async Task<SendPacket?> ReadMessage()
+        {
+            if (Socket == null)
+                return null;
+            if (Socket.Available == 0)
+                return null;
+            return NetworkCore.ReadMessage<SendPacket>(Socket, 1000);
         }
 
         //https://stackoverflow.com/questions/2661764/how-to-check-if-a-socket-is-connected-disconnected-in-c
@@ -236,23 +119,11 @@ namespace NetworkCS.Network
             }
         }
 
-        public async Task<bool> PingConnection()
-        {
-            try
-            {
-                var result = await SendObject(new PingPacket());
-                return result;
-            }
-            catch (ObjectDisposedException e)
-            {
-                Console.WriteLine("IsSocketConnected " + e.Message);
-                return false;
-            }
-        }
-
         public void Disconnect()
         {
-            Socket.Close();
+            if (Socket != null)
+                Socket.Close();
+            IsRunning = false;
         }
     }
 }

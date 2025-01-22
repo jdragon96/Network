@@ -4,3 +4,14 @@
 .vs/*
 /.vs/
 */.vs/*
+obj/*
+*/obj/*
+*/obj
+/obj
+*/bin/*
+*/bin
+/bin
+bin/
+obj/
+**/bin/
+**/obj/

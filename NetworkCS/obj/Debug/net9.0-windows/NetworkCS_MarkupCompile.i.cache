@@ -9,12 +9,12 @@ NetworkCS
 none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP
-C:\Users\wodyd\Desktop\Repository\myproject\NetworkCS\NetworkCS\App.xaml
-11025764863
 
-121862923412
+41631807112
+
+19805193026
 201668129756
-View\TCPChatting\TCPChattingView.xaml;
+App.xaml;View\MainWindowView.xaml;View\TCPClient\TCPClientView.xaml;View\TCPServer\TCPServerView.xaml;
 
-False
+True
 
