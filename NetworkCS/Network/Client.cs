@@ -118,7 +118,6 @@ namespace NetworkCS.Network
                 return false;
             }
         }
-
         public void Disconnect()
         {
             if (Socket != null)

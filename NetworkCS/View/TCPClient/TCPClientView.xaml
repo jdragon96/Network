@@ -30,6 +30,8 @@
                 <TextBlock Height="30" Text="{Binding Ping}"/>
                 <TextBlock Height="30" Text="GUID"/>
                 <TextBlock Height="30" Text="{Binding ClientGUID}"/>
+                <TextBlock Height="30" Text="내 포트번호"/>
+                <TextBlock Height="30" Text="{Binding MyPort}"/>
             </StackPanel>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>

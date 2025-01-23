@@ -20,6 +20,7 @@ namespace NetworkCS.View
         public TCPClientVM()
         {
             InitCommand();
+            Outputs = new ObservableCollection<string>();
         }
 
         /** Property Start **/
@@ -87,6 +88,16 @@ namespace NetworkCS.View
             {
                 _Ping = value;
                 OnPropertyChanged("Ping");
+            }
+        }
+        private string _MyPort { get; set; } = "";
+        public string MyPort
+        {
+            get { return _MyPort; }
+            set
+            {
+                _MyPort = value;
+                OnPropertyChanged("MyPort");
             }
         }
 
@@ -189,6 +200,10 @@ namespace NetworkCS.View
             packet.Message = Message;
             packet.GuidId = ClientGUID;
             await _client.SendMessage(packet);
+            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                Outputs.Add(Message);
+            }));
             Message = "";
         }
     }

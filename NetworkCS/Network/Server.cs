@@ -83,7 +83,9 @@ namespace NetworkCS.Network
             {
                 if (except == client)
                     continue;
-                NetworkCore.SendMessage(Socket, packet);
+                if (!client.Socket.Connected)
+                    continue;
+                NetworkCore.SendMessage(client.Socket, packet);
             }
         }
 

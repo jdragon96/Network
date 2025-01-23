@@ -104,8 +104,8 @@ namespace NetworkCS.View
                 {
                     Outputs.Add(packet.Message);
                 });
+                server.Broadcast(packet, ClientHash[packet.GuidId]);
             }
-            server.Broadcast(packet, ClientHash[packet.GuidId]);
         }
 
         private async Task Stop()
