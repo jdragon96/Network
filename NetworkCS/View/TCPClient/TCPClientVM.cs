@@ -12,6 +12,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using System.Collections;
+using System.Windows.Interop;
 
 namespace NetworkCS.View
 {
@@ -133,11 +135,37 @@ namespace NetworkCS.View
 
         private void ReceiveMessage(SendPacket message)
         {
-            App.Current.Dispatcher.BeginInvoke(new Action(() =>
+            if (message.Type == MessageType.MESSAGE)
             {
-                Outputs.Add(message.Message);
-            }));
+                App.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    Outputs.Add(message.Message);
+                }));
+            }
         }
+
+        //public Tuple<int, byte[]> Receive()
+        //{
+
+        //    try
+        //    {
+        //        byte[] ReadBuffer = new byte[2048];
+        //        var nRecv = Sock.Receive(ReadBuffer, 0, ReadBuffer.Length, SocketFlags.None);
+
+        //        if (nRecv == 0)
+        //        {
+        //            return null;
+        //        }
+
+        //        return Tuple.Create(nRecv, ReadBuffer);
+        //    }
+        //    catch (SocketException se)
+        //    {
+        //        LatestErrorMsg = se.Message;
+        //    }
+
+        //    return null;
+        //}
         /** Functions end **/
 
         //////////////////////////////// Command Start
@@ -163,12 +191,11 @@ namespace NetworkCS.View
             IPAddress.TryParse(IP, out ipAdr);
             IPEndPoint End = new IPEndPoint(ipAdr, port);
             _serverSocket.Connect(End);
-            using (Stream s = new NetworkStream(_serverSocket))
+            byte[] ReadBuffer = new byte[2048];
+            await _serverSocket.ReceiveAsync(ReadBuffer).ContinueWith((recvByteLength) =>
             {
-                s.ReadTimeout = 10000;
-                var reader = new StreamReader(s);
-                var msg = reader.ReadLine();
-                var packet = JsonSerializer.Deserialize<SendPacket>(msg);
+                string text = Encoding.UTF8.GetString(ReadBuffer, 0, recvByteLength.Result);
+                var packet = JsonSerializer.Deserialize<SendPacket>(text);
                 if (packet != null)
                 {
                     ClientGUID = packet.GuidId;
@@ -178,12 +205,11 @@ namespace NetworkCS.View
                         _client.OnReceivePacket += ReceiveMessage;
                     }
                 }
-            }
 
-            _isRunning = true;
-            _pingTask = Task.Run(() => PingCheck());
+                _isRunning = true;
+                _pingTask = Task.Run(() => PingCheck());
+            });
         }
-
         private async Task ExecuteStop()
         {
             if (_serverSocket != null)
@@ -200,10 +226,6 @@ namespace NetworkCS.View
             packet.Message = Message;
             packet.GuidId = ClientGUID;
             await _client.SendMessage(packet);
-            App.Current.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                Outputs.Add(Message);
-            }));
             Message = "";
         }
     }
